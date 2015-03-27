@@ -55,3 +55,42 @@ string Conversions::DecBin(double decVal, int maxRep)
     return resultado;
 }
 
+string Conversions::BinDec(string binInt, string binDec)
+{
+//    const char *bin = decVal.c_str();
+//    string resultado;
+//    double numRes;
+//    numRes = bin[0];
+//    cout<<numRes<<endl;
+//    for(int i = 0; i < 2; i++)
+//    {
+//        numRes = atof(bin);
+//    }
+//    //cout<<bin[0];
+//    std::ostringstream strs;
+//    strs << numRes;
+//    cout << strs.str();
+//    return resultado;
+
+    int indice = 0;
+    double Resultado = 0;
+    for(int i = binInt.length()-1; i >= 0; i--)
+    {
+        Resultado += double(binInt.at(i)-48)*pow(2,indice);
+        indice++;
+    }
+
+    indice = -1;
+    for(int i = 0; i <= binDec.length()-1; i++)
+    {
+        Resultado += double(binDec.at(i)-48)*pow(2,indice);
+        indice--;
+    }
+
+    //ui->numDec->setText(QString::number(Resultado));
+    std::ostringstream strs;
+    strs << Resultado;
+
+    return strs.str();
+}
+
