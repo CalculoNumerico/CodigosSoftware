@@ -1,4 +1,4 @@
-#include <conversions.h>
+#include <Conversoes/conversions.h>
 #include <SistemasdeControle/headers/graphicLibs/grafics.h>
 #include <ctime>
 
@@ -23,33 +23,14 @@ void TimeEvent(int argc, char *argv[])
     plot->startFramework(argc,argv);
 }
 
+using namespace Conv;
 int main(int argc, char *argv[])
 {
+    //Teste de conversão como Namespace//////////////
+    cout<<DecBin(3,5)<<"\n";            //11
+    cout<<BinDec("1111","0")<<"\n";     //15
+    //...///////////////////////////////////////////////
 
-        TimeEvent(argc, argv);
-//    LinAlg::Matrix<double> In, Out;
-//    In  = "0";
-//    grafics *plot = new grafics();
-//    plot->setData(In, Out);
-//    for(double i = 0; i < 5; i++)
-//       *plot += i;
-//    glutTimerFunc( 10, TimeEvent, 1);
-//    cout<<plot->getData();
-//    glutInit(&argc, argv);
-//    grafics *plot = new grafics();
-//    plot->setData(In, Out);
-//    plot->setInstance(plot);
-//    plot->startFramework(argc,argv);
-
-//    grafics *plot2 = new grafics();
-//    plot2->setData(In2, Out2);
-//    plot2->setInstance(plot2);
-//    plot2->startFramework(argc,argv);
-//    glutMainLoop();
-//    Conversions *conv = new Conversions();
-//    double valNumb;
-//    string val;
-//    cin >> valNumb;
-//    std::cout << conv->DecBin(valNumb, 0);
+    //TimeEvent(argc, argv);        //Teste da biblioteca gráfica
     return 0;
 }
