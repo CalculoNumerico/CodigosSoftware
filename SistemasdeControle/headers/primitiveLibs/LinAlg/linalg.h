@@ -41,7 +41,7 @@ namespace LinAlg {
     LinAlg::Matrix<Type> EigenValues(const LinAlg::Matrix<Type>& matrix_to_get_eigenvalues, unsigned iterations = 100);
 }
 
-#include "SistemasdeControle/src/primitiveLibs/LinAlg/linalg.hpp"
+#include "SistemasdeControle/headers/primitiveLibs/LinAlg/linalg.h"
 
 #endif // LINALG_H
 

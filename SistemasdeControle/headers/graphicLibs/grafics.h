@@ -4,7 +4,7 @@
 #include <math.h>
 #include "SistemasdeControle/headers/primitiveLibs/LinAlg/matrix.h"
 #include "SistemasdeControle/headers/graphicLibs/graphicproperties.h"
-#include "SistemasdeControle/headers/modelLibs/simfunction.h"
+//#include "SistemasdeControle/headers/modelLibs/simfunction.h"
 
 class grafics : public GlView
 {
