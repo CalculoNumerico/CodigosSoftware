@@ -30,40 +30,38 @@ LinAlg::Matrix<float> SistemasLineares::GaussJacobi(LinAlg::Matrix<float> Matriz
 
 LinAlg::Matrix<float> SistemasLineares::GaussSeidel(LinAlg::Matrix<float> MatrizUni, unsigned MaxIterations, float MinPrecision, bool ShowSteps)
 {
-    //int colum = MatrizUni.getNumberOfColumns();
-    float x1, dk;
+    //float x1, dk;
     LinAlg::Matrix<float> MatrizRes(MaxIterations, MatrizUni.getNumberOfColumns());
-    //MatrizRes(MaxIterations,colum);
-    //MatrizRes = this->X0;
-   // do
-    //{
-        for(int k = 2; k < MaxIterations+1; k++)
+
+    //Deixa o vetor de chute inicial padronizado como vetor linha
+    if(this->X0.getNumberOfColumns() < this->X0.getNumberOfRows())
+    {
+        ~this->X0;
+    }
+    //Insere o chute inicial na Matriz resposta
+    for(int i = 1; i < MatrizRes.getNumberOfColumns(); i++){
+        MatrizRes(1,i) = this->X0(1,i);
+    }
+
+    for(int k = 2; k <= MaxIterations; k++)
+    {
+        for(int i = 1; i < MatrizUni.getNumberOfColumns(); i++)
         {
-            for(int i = 1; i < MatrizUni.getNumberOfColumns()-1; i++)
+            float aux = 0;
+            //MatrizRes(k,i) = MatrizUni(i, MatrizUni.getNumberOfColumns())/MatrizUni(i,i);
+            for(int j = 1; j < i; j++)
             {
-                cout<<endl<<MatrizUni(i, MatrizUni.getNumberOfColumns())/MatrizUni(i,i)<<" ";
-                MatrizRes(k,i) = MatrizUni(i, MatrizUni.getNumberOfColumns())/MatrizUni(i,i);
-                for(int j = 1; j < MatrizUni.getNumberOfColumns()-1; j++)
-                {
-                    if(i != j){
-                        MatrizRes(k,i) += ((MatrizUni(i,j)*MatrizRes(k-1,i))*-1)/MatrizUni(i,i);
-                        cout<<((MatrizUni(i,j)*MatrizRes(k-1,i))*-1);
-                        cout<<"R";
-                    }
-                    //cout<<i<<endl<<MatrizRes<<endl;
-                }
+                aux += (MatrizUni(i,j)*MatrizRes(k, j));
+                //MatrizRes(k,i) -= (MatrizUni(i,j)*MatrizRes(k, j))/MatrizUni(i,i);
             }
+            for(int j = i+1; j < MatrizUni.getNumberOfColumns(); j++)
+            {
+                aux += (MatrizUni(i,j)*MatrizRes(k-1, j));
+                //MatrizRes(k,i) -= (MatrizUni(i,j)*MatrizRes(k-1, j))/MatrizUni(i,i);
+            }
+            MatrizRes(k,i) = (MatrizUni(i, MatrizUni.getNumberOfColumns()) - aux)/MatrizUni(i,i);
         }
-        return MatrizRes;
-   // }
-    //while(dk > MinPrecision);
-//    if(ShowSteps)
-//    {
-
-//    }
-//    else
-//    {
-
-//    }
+    }
+    return MatrizRes;
 }
 
