@@ -28,7 +28,7 @@ public:
     LinAlg::Matrix<float> GaussJacobi(LinAlg::Matrix<float> MatrizUni);
 
 //        LinAlg::Matrix<float> GaussSeidel(LinAlg::Matrix<float> A, LinAlg::Matrix<float> B);
-    LinAlg::Matrix<float> GaussSeidel(LinAlg::Matrix<float> MatrizUni, unsigned MaxIterations, float MinPrecision, bool ShowSteps);
+    LinAlg::Matrix<float> GaussSeidel(LinAlg::Matrix<float> MatrizUni, unsigned MaxIterations, float MinPrecision);
 
 };
 #endif // SISTEMASLINEARES_H

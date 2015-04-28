@@ -28,7 +28,7 @@ LinAlg::Matrix<float> SistemasLineares::GaussJacobi(LinAlg::Matrix<float> Matriz
 {
 }
 
-LinAlg::Matrix<float> SistemasLineares::GaussSeidel(LinAlg::Matrix<float> MatrizUni, unsigned MaxIterations, float MinPrecision, bool ShowSteps)
+LinAlg::Matrix<float> SistemasLineares::GaussSeidel(LinAlg::Matrix<float> MatrizUni, unsigned MaxIterations, float MinPrecision)
 {
     //float x1, dk;
     LinAlg::Matrix<float> MatrizRes(MaxIterations, MatrizUni.getNumberOfColumns());
@@ -60,7 +60,13 @@ LinAlg::Matrix<float> SistemasLineares::GaussSeidel(LinAlg::Matrix<float> Matriz
                 //MatrizRes(k,i) -= (MatrizUni(i,j)*MatrizRes(k-1, j))/MatrizUni(i,i);
             }
             MatrizRes(k,i) = (MatrizUni(i, MatrizUni.getNumberOfColumns()) - aux)/MatrizUni(i,i);
+            //Verifica se o valor de erro d(k) é o maior encontrado
+            if(abs(MatrizRes(k,i) - MatrizRes(k-1,i)) > MatrizRes(k-1, MatrizRes.getNumberOfColumns()))
+                MatrizRes(k-1, MatrizRes.getNumberOfColumns()) = abs(MatrizRes(k,i) - MatrizRes(k-1,i));
         }
+
+        if(MatrizRes(k-1, MatrizRes.getNumberOfColumns()) < MinPrecision)
+            k = MaxIterations+1;
     }
     return MatrizRes;
 }
