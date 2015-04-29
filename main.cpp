@@ -25,13 +25,12 @@ int main()
 
 //Exempo da classe SistemasLineares - GaussSeidel//
     SistemasLineares G;
-    LinAlg::Matrix<float> A(4,5), X0(1,4);
-    //LinAlg::Ones(A);
+    LinAlg::Matrix<float> A(3,4), X0(1,4);
     G.setX0(X0);
-    A = "10,-1,2,0,6;-1,11,-1,3,25;2,-1,10,-1,-11;0,3,-1,8,15";
-    //A = "4,2,1,2;-2,7,1,0;1,-1,5,1";
+    //A = "10,-1,2,0,6;-1,11,-1,3,25;2,-1,10,-1,-11;0,3,-1,8,15";
+    A = "5,1,1,2;1,6,1,2;1,1,7,2";
     cout<<A;
-    cout<<endl<<G.GaussSeidel(A, 5, 0.01)<<endl;
+    cout<<endl<<G.GaussJacobi(A, 5, 0.01)<<endl;
 //--------------------------------------------------//
 }
 
