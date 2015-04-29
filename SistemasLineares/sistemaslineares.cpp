@@ -57,15 +57,15 @@ LinAlg::Matrix<float> SistemasLineares::GaussJacobi(LinAlg::Matrix<float> Matriz
                  {
                      if(i != j)
                          MatrizRes(k,i) -= ((MatrizUni(i,j)*MatrizRes(k-1,i)))/MatrizUni(i,i);//calculando a formula de JACOBI.
-
-                     //Verifica se o valor de erro d(k) é o maior encontrado
-                     if(abs(MatrizRes(k,i) - MatrizRes(k-1,i)) > MatrizRes(k-1, MatrizRes.getNumberOfColumns()))
-                         MatrizRes(k-1, MatrizRes.getNumberOfColumns()) = abs(MatrizRes(k,i) - MatrizRes(k-1,i));
                  }
-                 //Limita o numero de iterações até a precisão ser obtida
-                 if(MatrizRes(k-1, MatrizRes.getNumberOfColumns()) < MinPrecision)
-                     k = MaxIterations+1;
+                 //Verifica se o valor de erro d(k) é o maior encontrado
+                 if(abs(MatrizRes(k,i) - MatrizRes(k-1,i)) > MatrizRes(k-1, MatrizRes.getNumberOfColumns()))
+                     MatrizRes(k-1, MatrizRes.getNumberOfColumns()) = abs(MatrizRes(k,i) - MatrizRes(k-1,i));
              }
+
+             //Limita o numero de iterações até a precisão ser obtida
+             if(MatrizRes(k-1, MatrizRes.getNumberOfColumns()) < MinPrecision)
+                 k = MaxIterations+1;
          }
          return MatrizRes;
 
