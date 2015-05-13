@@ -1,5 +1,4 @@
 #include "pontflutuante.h"
-
 PontFlutuante::PontFlutuante()
 {
     this->precisao = 0;
@@ -11,19 +10,24 @@ PontFlutuante::~PontFlutuante()
 {
 }
 
-void PontFlutuante::setArm(double Dec, int Mant, int Inf, int Sup)
+void PontFlutuante::setArm(float Dec, int Mant, int Inf, int Sup)
 {
     string result;
     string ExpBin;
-
+    PontFlutuante c;
     //Converte o valor Decimal.
     result = Conv::DecBin(Dec, Mant);
 
     //Converte o Exponencial.
-    ExpBin = setExp(this->Valor_Exp,Inf, Sup);
+    this->Valor_Exp = Conv::getExp(Dec, 10);
+    ExpBin = setExp(Valor_Exp,Inf, Sup);
+
+    //Verifica tamanho do Exp.
+    while(ExpBin.length() != 4)
+        ExpBin = "0" + ExpBin;
 
     //Adcionando a mantissa.
-    while(result.length() <= Mant + 1)
+    while(result.length() <= Mant - 1)
         result +="0";
 
     //Adcionando o sinal da mantissa.
@@ -44,7 +48,7 @@ void PontFlutuante::setArm(double Dec, int Mant, int Inf, int Sup)
      this->Arm = result;
 }
 
-void PontFlutuante::setNum(double Dec, int Mant, int Inf, int Sup)
+void PontFlutuante::setNum(float Dec, int Mant, int Inf, int Sup)
 {
     string result;
     string ExpBin;
@@ -53,10 +57,15 @@ void PontFlutuante::setNum(double Dec, int Mant, int Inf, int Sup)
     result = Conv::DecBin(Dec,Mant);
 
     //Converte o Exponencial.
-    ExpBin = setExp(Valor_Exp,Inf,Sup);
+    this->Valor_Exp = Conv::getExp(Dec, 10);
+    ExpBin = setExp(Valor_Exp, Inf, Sup);
+
+    //Verifica tamanho do Exp.
+    while(ExpBin.length() != 4)
+        ExpBin = "0" + ExpBin;
 
     //Adcionando a mantissa.
-    while(result.length() <= Mant + 1)
+    while(result.length() <= Mant - 1)
         result +="0";
 
     //Adcionando o sinal da mantissa.
@@ -81,23 +90,3 @@ string PontFlutuante::setExp(int Exp, int Inf, int Sup)
     string exp = Conv::DecBin(Exp, Inf, Sup);
     return exp;
 }
-
-string PontFlutuante::getArm()
-{
-    return Arm;
-}
-
-string PontFlutuante::getNum()
-{
-    return this->Num;
-}
-
-void PontFlutuante::printArm()
-{
-    cout<<this->Arm<<"\n\n";
-}
-void PontFlutuante::printNum()
-{
-    cout<<this->Num<<"\n\n";
-}
-

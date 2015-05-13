@@ -10,10 +10,9 @@ class SistemasLineares
     LinAlg::Matrix<float> X0;
 
 //    void setUni(LinAlg::Matrix<float> A, LinAlg::Matrix<float> B);
-
     void PivotParcial(LinAlg::Matrix<float> &MatrizUni, int cols);
-
-    void PivotCompleto(LinAlg::Matrix<float> &MatrizUni, int cols);
+    void CritLinhas(LinAlg::Matrix<float> MatrizUni);
+    void CritSassenfeld(LinAlg::Matrix<float> MatrizUni);
     float Abs(float Valor);
 
 public:
@@ -21,15 +20,10 @@ public:
     ~SistemasLineares();
 
     void setX0(LinAlg::Matrix<float> InicialStep);
-
     void ConvDiv(LinAlg::Matrix<float> MatrizUni);
-//       LinAlg::Matrix<float> Gauss(LinAlg::Matrix<float> A, LinAlg::Matrix<float> B);
+
     LinAlg::Matrix<float> Gauss(LinAlg::Matrix<float> MatrizUni);
-
-//        LinAlg::Matrix<float> GaussJacobi(LinAlg::Matrix<float> A, LinAlg::Matrix<float> B);
     LinAlg::Matrix<float> GaussJacobi(LinAlg::Matrix<float> MatrizUni, unsigned MaxIterations, float MinPrecision);
-
-//        LinAlg::Matrix<float> GaussSeidel(LinAlg::Matrix<float> A, LinAlg::Matrix<float> B);
     LinAlg::Matrix<float> GaussSeidel(LinAlg::Matrix<float> MatrizUni, unsigned MaxIterations, float MinPrecision);
 
 };

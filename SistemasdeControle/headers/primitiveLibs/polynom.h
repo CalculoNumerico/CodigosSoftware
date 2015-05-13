@@ -152,7 +152,7 @@ LinAlg::Matrix<TypeOfClass> MultPoly(LinAlg::Matrix<TypeOfClass> value1,
 
     for(unsigned i = 1; i <= value1.getCols(); i++)
         for(unsigned j = 1; j <= value2.getCols(); j++)
-            ret(1,i+j-1, ret(1,i+j-1) +  value1(1,i)*value2(1,j));
+            ret(1,i+j-1) = ret(1,i+j-1) +  value1(1,i)*value2(1,j);
 
     return ret;
 }

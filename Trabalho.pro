@@ -19,7 +19,8 @@ SOURCES += main.cpp \
     SistemasdeControle/src/graphicLibs/glview.cpp \
     SistemasdeControle/src/graphicLibs/grafics.cpp \
     SistemasdeControle/src/graphicLibs/graphicproperties.cpp \
-    SistemasdeControle/src/primitiveLibs/polynom.cpp
+    SistemasdeControle/src/primitiveLibs/polynom.cpp \
+    MetodosPolinomiais/interpolacaopolinomial.cpp
 
 include(deployment.pri)
 qtcAddDeployment()
@@ -45,7 +46,8 @@ HEADERS += \
     SistemasdeControle/headers/primitiveLibs/LinAlg/matrix.h \
     SistemasdeControle/headers/primitiveLibs/polynom.h \
     SistemasdeControle/src/primitiveLibs/LinAlg/linalg.hpp \
-    SistemasdeControle/src/primitiveLibs/LinAlg/matrix.hpp
+    SistemasdeControle/src/primitiveLibs/LinAlg/matrix.hpp \
+    MetodosPolinomiais/interpolacaopolinomial.h
 
 OTHER_FILES +=
 
