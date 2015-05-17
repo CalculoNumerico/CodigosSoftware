@@ -38,10 +38,10 @@ int main()
 //--------------------------------------------------//
 
 //Exemplo da classe InterpolacaoPolinomial//
-    LinAlg::Matrix<float> A("0,1,3"), f("-5,1,25"), x;
-    InterpolacaoPolinomial polynom(A, f);// = new InterpolacaoPolinomial(A);
-    x = polynom.initVector(1,1,600);
-    cout<<x;
+    LinAlg::Matrix<float> A("1,2,4,7"), f("3;6;8;12"), f2("3,6,8,12"), x;
+    InterpolacaoPolinomial polynom(A, f2);// = new InterpolacaoPolinomial(A);
+    cout<<polynom.Polinomio_Lagrange(A,f,3);
+    cout<<polynom.Lagrange(3);
     //polynom.Lagrange(0);
 //-------------------------------------------------//
 }
