@@ -24,25 +24,32 @@ void SistemasLineares::PivotParcial(LinAlg::Matrix<float> &MatrizUni, int cols)
 
 LinAlg::Matrix<float> SistemasLineares::Gauss(LinAlg::Matrix<float> MatrizUni)
 {
-    LinAlg::Matrix<float> MatrizRes = MatrizUni;
+     LinAlg::Matrix<float> MatrizGauss;
     //Laço para contagem das colunas de MatrizUni.
-    for(int i = 1; i < MatrizUni.getNumberOfColumns(); i++)
+    for(unsigned i = 1; i < MatrizUni.getNumberOfColumns(); i++)
     {   //Laço para contagem das linhas de MatrizUni.
-        for(int j = i + 1; j <= MatrizUni.getNumberOfRows();  j++)
+        for(unsigned j = i + 1; j <= MatrizUni.getNumberOfRows();  j++)
         {
             float m = MatrizUni(j,i)/MatrizUni(i,i);
             //Laço para contagem das colunas da equação.
-            for(int z = i ; z <= MatrizUni.getNumberOfColumns(); z++)
-            {
+            for(unsigned z = i ; z <= MatrizUni.getNumberOfColumns(); z++)
                 MatrizUni(j,z) = MatrizUni(j,z) - m*MatrizUni(i,z);
-
-            }
-    //  cout<<"\n"<<MatrizUni;   //Habilitar para testes.
         }
     }
-    MatrizRes = MatrizUni;
 
-    return MatrizRes;
+    MatrizGauss = LinAlg::Zeros<float>(1, MatrizUni.getNumberOfRows());
+    float R;
+    for(unsigned i = 1; i <= MatrizUni.getNumberOfRows(); ++i)
+    {
+        unsigned k = MatrizUni.getNumberOfRows() - i + 1;
+        R = 0;
+        for(unsigned j = k + 1; j <= MatrizUni.getNumberOfColumns() - 1; ++j)
+                R = R + MatrizUni(k, j) * MatrizGauss(1, j);
+
+        MatrizGauss(1, k) = (MatrizUni(k, MatrizUni.getNumberOfColumns()) - R) / MatrizUni(k, k);
+    }
+
+    return MatrizGauss;
     }
 
 LinAlg::Matrix<float> SistemasLineares::GaussJacobi(LinAlg::Matrix<float> MatrizUni, unsigned MaxIterations, float MinPrecision)
